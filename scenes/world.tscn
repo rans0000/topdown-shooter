@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4tmuahbrvodu"]
+[gd_scene load_steps=9 format=3 uid="uid://c4tmuahbrvodu"]
 
 [ext_resource type="PackedScene" uid="uid://chx0th40f3qwq" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="Texture2D" uid="uid://u43owmv8pjvk" path="res://assets/textures/texture_01.png" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://blg2a01ntsib6" path="res://scenes/camera.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://bbdtk2go5w7hj" path="res://scenes/enemy.tscn" id="4_k0juu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
 sky_top_color = Color(0.622333, 0.685203, 0.772828, 1)
@@ -31,16 +32,21 @@ environment = SubResource("Environment_k0juu")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 9.04882, 9.52569, 0)
 light_color = Color(1, 0.991667, 0.9, 1)
 shadow_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="Entities" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("1_nnsk1")]
 camera = NodePath("../../CameraBase/CameraPivot/Camera")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Gun" parent="Entities/Player" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.588569, 1.47672, -0.557674)
 
 [node name="Map" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.481868, 0)
@@ -48,11 +54,17 @@ use_collision = true
 collision_mask = 0
 size = Vector3(50, 1, 50)
 material = SubResource("StandardMaterial3D_4wyf3")
+metadata/_edit_lock_ = true
 
 [node name="CameraBase" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_4wyf3")]
 camera_target = NodePath("../Entities/Player/Marker3D")
+metadata/_edit_lock_ = true
 
 [node name="Spawns" type="Node3D" parent="." groups=["SpawnGroup"]]
+metadata/_edit_lock_ = true
+
+[node name="Enemy" parent="Spawns" instance=ExtResource("4_k0juu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -11)
 
 [editable path="Entities/Player"]
 [editable path="CameraBase"]

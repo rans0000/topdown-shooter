@@ -15,5 +15,5 @@ func _on_expiry_timer_timeout() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if 'take_damage' in body :
-		body.take_damage()
+		body.take_damage(30)
 	queue_free()
