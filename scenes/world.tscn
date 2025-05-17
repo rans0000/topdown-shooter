@@ -37,6 +37,9 @@ shadow_enabled = true
 [node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("1_nnsk1")]
 camera = NodePath("../../CameraBase/CameraPivot/Camera")
 
+[node name="Gun" parent="Entities/Player" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.588569, 1.47672, -0.557674)
+
 [node name="Map" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map"]

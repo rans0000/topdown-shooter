@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://tuwotykw8vr6"]
 
-[ext_resource type="Script" uid="uid://cl56x6of8cnno" path="res://scipts/bullet.gd" id="1_mx1hr"]
+[ext_resource type="Script" uid="uid://cl56x6of8cnno" path="res://scripts/bullet.gd" id="1_mx1hr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mx1hr"]
 height = 0.3
