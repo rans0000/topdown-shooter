@@ -49,5 +49,7 @@ material = SubResource("StandardMaterial3D_4wyf3")
 [node name="CameraBase" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_4wyf3")]
 camera_target = NodePath("../Entities/Player/Marker3D")
 
+[node name="Spawns" type="Node3D" parent="." groups=["SpawnGroup"]]
+
 [editable path="Entities/Player"]
 [editable path="CameraBase"]
