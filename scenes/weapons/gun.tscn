@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ahf30557q8a"]
+
+[ext_resource type="Script" uid="uid://daps3atlor4xm" path="res://scipts/gun.gd" id="1_76485"]
+
+[node name="Gun" type="Node3D"]
+script = ExtResource("1_76485")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+size = Vector3(0.1, 0.1, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0.05)
+size = Vector3(0.1, 0.2, 0.3)
+
+[node name="GunMuzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0183)
