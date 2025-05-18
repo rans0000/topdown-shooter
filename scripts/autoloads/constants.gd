@@ -5,3 +5,9 @@ const MOVE_MODE = {
 	WALK = 1.0,
 	SPRINT = 2.0
 }
+
+enum FIRE_MODE {
+	MANUAL,
+	SEMI_AUTO,
+	AUTO
+}

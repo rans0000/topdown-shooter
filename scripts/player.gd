@@ -71,7 +71,3 @@ func handle_crouch() -> void:
 			move_mode = Constants.MOVE_MODE.CROUCH
 			scale = Vector3(1, 0.5, 1)
 		is_crouching = not is_crouching
-
-
-func next() -> void:
-	pass

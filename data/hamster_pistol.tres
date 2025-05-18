@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="RangedWeaponConfig" load_steps=3 format=3 uid="uid://clrddmtxnkldx"]
+
+[ext_resource type="ArrayMesh" uid="uid://ctjft3dmvtkvc" path="res://assets/models/hamster_pistol.res" id="1_fev0c"]
+[ext_resource type="Script" uid="uid://dcqpsnfve3rdl" path="res://scripts/ranged_weapon_config.gd" id="1_tyfml"]
+
+[resource]
+script = ExtResource("1_tyfml")
+name = "Hamster Pistol"
+mesh = ExtResource("1_fev0c")
+muzzle_position = Vector3(0, 0.03, -0.2)
+cool_down = 0.2
+weapon_sway = 0.15
+is_automatic = false
+firing_sfx = Array[AudioStream]([])
+damage = 5.0
+bullet_spread = 200.0
+max_mag = 6
+bullet_amount = 1
+bullet_life = 3.0
+metadata/_custom_type_script = "uid://dcqpsnfve3rdl"

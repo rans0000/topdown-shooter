@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://chx0th40f3qwq"]
 
 [ext_resource type="Script" uid="uid://ctja0uvn27c7c" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="PackedScene" uid="uid://1ahf30557q8a" path="res://scenes/weapons/gun.tscn" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://cfxhbeqf1tupn" path="res://scenes/weapons/range_weapon.tscn" id="2_ru62r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -47,9 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 size = Vector3(0.2, 2, 0.2)
 
-[node name="Gun" parent="." instance=ExtResource("2_g2els")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.588569, 1.47672, -0.557674)
-
 [node name="PlayerUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -58,3 +55,6 @@ offset_bottom = 40.0
 
 [node name="Cursor" type="MeshInstance2D" parent="PlayerUI"]
 mesh = SubResource("SphereMesh_3vyb7")
+
+[node name="RangeWeapon" parent="." instance=ExtResource("2_ru62r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.696792, 1.47442, -0.0948657)
