@@ -82,5 +82,5 @@ func handle_crouch() -> void:
 func calculate_weapon_sway() -> void:
 #	@todo: calculate sway properly
 	var distanceSquared := position.distance_squared_to(target_position)
-	var sway = remap(distanceSquared, 0, 400, 5, 20)
+	var sway = remap(distanceSquared, 0, 400, 5, 20) + velocity.length()
 	player_ui.set_weapon_sway(sway)
