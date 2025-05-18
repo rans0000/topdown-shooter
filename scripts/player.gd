@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var camera: Camera3D
-@onready var weapon: RangedWeapon = $RangeWeapon
+@onready var weapon: Weapon = $Weapon
 @onready var bounds := get_viewport().get_visible_rect().size
 @onready var player_ui: PlayerUI = $PlayerUI
 var move_speed := 300.0

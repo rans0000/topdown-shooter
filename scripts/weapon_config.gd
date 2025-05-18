@@ -1,5 +1,5 @@
 extends Resource
-class_name RangedWeaponConfig
+class_name WeaponConfig
 
 @export var name : String
 @export var mesh: Mesh

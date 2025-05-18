@@ -1,14 +1,14 @@
 @tool
 
 extends Node3D
-class_name RangedWeapon
+class_name Weapon
 
 @onready var muzzle : Marker3D = $Muzzle
 @onready  var weapon_mesh : MeshInstance3D = %WeaponMesh
 var BulletScene : PackedScene = preload("res://scenes/weapons/bullet.tscn")
-@export var weapon_type : RangedWeaponConfig:
+@export var weapon : WeaponConfig:
 	set(value):
-		weapon_type = value
+		weapon = value
 		if Engine.is_editor_hint():
 			load_weapon()
 var weapon_index := 0
@@ -25,13 +25,13 @@ func _input(_event: InputEvent) -> void:
 		fire_weapon()
 	if Input.is_action_just_pressed("action_weapon_switch"):
 		weapon_index = (weapon_index + 1) % weapon_paths.size()
-		weapon_type = load(weapon_paths[weapon_index])
+		weapon = load(weapon_paths[weapon_index])
 		load_weapon()
 
 
 func load_weapon() -> void:
-	weapon_mesh.mesh = weapon_type.mesh
-	muzzle.position = weapon_type.muzzle_position
+	weapon_mesh.mesh = weapon.mesh
+	muzzle.position = weapon.muzzle_position
 
 
 func fire_weapon() -> void:

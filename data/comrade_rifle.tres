@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="RangedWeaponConfig" load_steps=3 format=3 uid="uid://b8hwnvavsutav"]
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3 uid="uid://hsykr01gij81"]
 
-[ext_resource type="Script" uid="uid://dcqpsnfve3rdl" path="res://scripts/ranged_weapon_config.gd" id="1_dgkee"]
 [ext_resource type="ArrayMesh" uid="uid://8ity65x77kl" path="res://assets/models/comrade_rifle.res" id="1_wesbm"]
+[ext_resource type="Script" uid="uid://dcqpsnfve3rdl" path="res://scripts/weapon_config.gd" id="2_wesbm"]
 
 [resource]
-script = ExtResource("1_dgkee")
-name = "Comrade Rifle"
+script = ExtResource("2_wesbm")
+name = "Comrade Rife"
 mesh = ExtResource("1_wesbm")
-muzzle_position = Vector3(0, 0.05, -0.5)
+muzzle_position = Vector3(0, 0, 0)
 cool_down = 0.2
 weapon_sway = 0.15
 is_automatic = true
