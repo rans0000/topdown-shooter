@@ -12,6 +12,8 @@ var fire_mode : int
 		weapon_type = value
 		if Engine.is_editor_hint():
 			load_weapon()
+const weapon_paths := ["res://data/comrade_rifle.tres", "res://data/hamster_pistol.tres"];
+var weapon_index := 0
 
 
 func _ready() -> void:
@@ -23,6 +25,11 @@ func _input(_event: InputEvent) -> void:
 		var bullet = BulletScene.instantiate()
 		get_tree().get_first_node_in_group('SpawnGroup').add_child(bullet)
 		bullet.global_transform = muzzle.global_transform
+	if Input.is_action_just_pressed("action_weapon_switch"):
+		weapon_index = (weapon_index + 1) % weapon_paths.size()
+		print(weapon_index)
+		weapon_type = load(weapon_paths[weapon_index])
+		load_weapon()
 
 
 func load_weapon() -> void:
