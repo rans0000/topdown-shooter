@@ -7,8 +7,8 @@ var move_speed := 300.0
 var cursor_position := Vector2.ZERO
 var target_position := Vector3.ZERO
 var joystick_acceleration := 10;
-
-
+var move_mode := Constants.MOVE_MODE.WALK
+var is_crouching := false
 
 
 func _physics_process(delta: float) -> void:
@@ -18,11 +18,21 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		cursor_position = get_viewport().get_mouse_position()
+	elif event is InputEventJoypadMotion:
+		handle_joystick_motion()
+	#elif event is InputEventJoypadButton:
+	handle_sprint()
+	handle_crouch()
+
+
 func move_player(delta:float) -> void:
 	var move_vec2D := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := Vector3(move_vec2D.x, 0, move_vec2D.y)
 	var target_vec2D := Vector2(target_position.x, target_position.z).normalized()
-	var speed := remap(move_vec2D.dot(target_vec2D), -1, 1, 1, 2) * move_speed
+	var speed := remap(move_vec2D.dot(target_vec2D), -1, 1, 1, 2) * move_speed * move_mode
 	velocity = direction  * speed * delta
 
 
@@ -44,11 +54,21 @@ func handle_joystick_motion() -> void:
 	var joy_vector = Input.get_vector("camera_left", "camera_right","camera_up","camera_down") * joystick_acceleration
 	if joy_vector == Vector2.ZERO: return
 	cursor_position = Vector2(clampf(cursor_position.x + joy_vector.x, 0, bounds.x),clampf(cursor_position.y + joy_vector.y, 0, bounds.y) )
-	
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		cursor_position = get_viewport().get_mouse_position()
-	elif event is InputEventJoypadMotion:
-		handle_joystick_motion()
+func handle_sprint() -> void:
+	if Input.is_action_pressed("action_sprint"):
+		move_mode = Constants.MOVE_MODE.SPRINT
+	if Input.is_action_just_released("action_sprint"):
+		move_mode = Constants.MOVE_MODE.WALK
+
+
+func handle_crouch() -> void:
+	if Input.is_action_just_pressed("action_crouch"):
+		if is_crouching:
+			move_mode = Constants.MOVE_MODE.WALK
+			scale = Vector3(1, 1, 1)
+		else:
+			move_mode = Constants.MOVE_MODE.CROUCH
+			scale = Vector3(1, 0.5, 1)
+		is_crouching = not is_crouching
