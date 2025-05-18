@@ -35,6 +35,7 @@ func load_weapon() -> void:
 
 
 func fire_weapon() -> void:
-	var bullet = BulletScene.instantiate()
+	var bullet = BulletScene.instantiate() as Bullet
 	get_tree().get_first_node_in_group('SpawnGroup').add_child(bullet)
+	bullet.configure(weapon.bullet_speed, weapon.damage, weapon.bullet_life)
 	bullet.global_transform = muzzle.global_transform
