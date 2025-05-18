@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://pb871oa06w88"]
+
+[ext_resource type="PackedScene" uid="uid://dla2tpmcajoaj" path="res://scenes/weapons/reticule.tscn" id="1_5vla4"]
+[ext_resource type="Script" uid="uid://d23alp10vbmhh" path="res://scripts/player_ui.gd" id="1_d1g4d"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5vla4"]
+radius = 5.0
+height = 10.0
+
+[node name="PlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_d1g4d")
+
+[node name="Cursor" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_5vla4")
+
+[node name="Reticule" parent="." instance=ExtResource("1_5vla4")]

@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
 @export var camera: Camera3D
+@onready var weapon: RangedWeapon = $RangeWeapon
 @onready var bounds := get_viewport().get_visible_rect().size
-@onready var cursor: MeshInstance2D = $PlayerUI/Cursor
+@onready var player_ui: PlayerUI = $PlayerUI
 var move_speed := 300.0
 var cursor_position := Vector2.ZERO
 var target_position := Vector3.ZERO
@@ -11,10 +12,15 @@ var move_mode := Constants.MOVE_MODE.WALK
 var is_crouching := false
 
 
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
 func _physics_process(delta: float) -> void:
 	move_player(delta)
 	handle_joystick_motion()
 	look_at_camera()
+	calculate_weapon_sway()
 	move_and_slide()
 
 
@@ -36,7 +42,7 @@ func move_player(delta:float) -> void:
 
 
 func look_at_camera() -> void:
-	cursor.position = cursor_position
+	player_ui.set_reticule_position(cursor_position)
 	var state = get_world_3d().direct_space_state
 	var origin = camera.project_ray_origin(cursor_position)
 	var end = origin + camera.project_ray_normal(cursor_position) * 1000
@@ -71,3 +77,10 @@ func handle_crouch() -> void:
 			move_mode = Constants.MOVE_MODE.CROUCH
 			scale = Vector3(1, 0.5, 1)
 		is_crouching = not is_crouching
+
+
+func calculate_weapon_sway() -> void:
+#	@todo: calculate sway properly
+	var distanceSquared := position.distance_squared_to(target_position)
+	var sway = remap(distanceSquared, 0, 400, 5, 20)
+	player_ui.set_weapon_sway(sway)
