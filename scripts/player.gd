@@ -3,8 +3,9 @@ extends CharacterBody3D
 @export var camera: Camera3D
 @onready var bounds := get_viewport().get_visible_rect().size
 @onready var cursor: MeshInstance2D = $PlayerUI/Cursor
-var move_speed := 200.0
+var move_speed := 300.0
 var cursor_position := Vector2.ZERO
+var target_position := Vector3.ZERO
 var joystick_acceleration := 10;
 
 
@@ -12,15 +13,17 @@ var joystick_acceleration := 10;
 
 func _physics_process(delta: float) -> void:
 	move_player(delta)
-	move_and_slide()
 	handle_joystick_motion()
 	look_at_camera()
+	move_and_slide()
 
 
 func move_player(delta:float) -> void:
 	var move_vec2D := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var direction := Vector3(move_vec2D.x, 0, move_vec2D.y) * move_speed * delta
-	velocity = direction + direction
+	var direction := Vector3(move_vec2D.x, 0, move_vec2D.y)
+	var target_vec2D := Vector2(target_position.x, target_position.z).normalized()
+	var speed := remap(move_vec2D.dot(target_vec2D), -1, 1, 1, 2) * move_speed
+	velocity = direction  * speed * delta
 
 
 func look_at_camera() -> void:
@@ -33,8 +36,8 @@ func look_at_camera() -> void:
 	if result.is_empty(): return
 	
 	var pos = result.position;
-	var target := Vector3(pos.x, position.y, pos.z)
-	look_at(target, Vector3.UP)
+	target_position = Vector3(pos.x, position.y, pos.z)
+	look_at(target_position, Vector3.UP)
 
 
 func handle_joystick_motion() -> void:

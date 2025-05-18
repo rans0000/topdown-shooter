@@ -42,9 +42,6 @@ camera = NodePath("../../CameraBase/CameraPivot/Camera")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Gun" parent="Entities/Player" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.588569, 1.47672, -0.557674)
-
 [node name="Map" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
