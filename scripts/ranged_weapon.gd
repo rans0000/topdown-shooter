@@ -9,7 +9,6 @@ var BulletScene : PackedScene = preload("res://scenes/weapons/bullet.tscn")
 var fire_mode : int
 @export var weapon_type : RangedWeaponConfig:
 	set(value):
-		print('yay')
 		weapon_type = value
 		if Engine.is_editor_hint():
 			load_weapon()
@@ -19,13 +18,11 @@ func _ready() -> void:
 	load_weapon()
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("primary_attack"):
 		var bullet = BulletScene.instantiate()
 		get_tree().get_first_node_in_group('SpawnGroup').add_child(bullet)
 		bullet.global_transform = muzzle.global_transform
-	if Input.is_action_just_pressed("weapon_mode_backward"):
-		pass
 
 
 func load_weapon() -> void:
