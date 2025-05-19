@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfxhbeqf1tupn"]
+[gd_scene load_steps=4 format=3 uid="uid://cfxhbeqf1tupn"]
 
 [ext_resource type="Script" uid="uid://daps3atlor4xm" path="res://scripts/weapon.gd" id="1_eo7p8"]
+[ext_resource type="Resource" uid="uid://blkps5agoh526" path="res://data/hamster_pistol.tres" id="2_0rtie"]
+[ext_resource type="ArrayMesh" uid="uid://ctjft3dmvtkvc" path="res://assets/models/hamster_pistol.res" id="3_4uykt"]
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_eo7p8")
 weapon_paths = Array[String](["uid://blkps5agoh526", "uid://hsykr01gij81"])
+settings = ExtResource("2_0rtie")
 
 [node name="WeaponMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("3_4uykt")
 
 [node name="Muzzle" type="Marker3D" parent="."]
 

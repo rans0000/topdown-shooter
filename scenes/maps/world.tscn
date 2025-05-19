@@ -54,7 +54,7 @@ material = SubResource("StandardMaterial3D_4wyf3")
 metadata/_edit_lock_ = true
 
 [node name="CameraBase" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_74gp3")]
-camera_target = NodePath("../Entities/Player/Marker3D")
+camera_target = NodePath("../Entities/Player/CameraTarget")
 metadata/_edit_lock_ = true
 
 [node name="Spawns" type="Node3D" parent="." groups=["SpawnGroup"]]

@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var camera_target: Marker3D
+@export var camera_target: Node3D
 var mouse_acceleration := 7
 
 
