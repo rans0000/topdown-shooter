@@ -16,4 +16,8 @@ mesh = ExtResource("3_4uykt")
 
 [node name="Muzzle" type="Marker3D" parent="."]
 
-[node name="CooldownTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="Timers"]
+
+[connection signal="timeout" from="Timers/CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

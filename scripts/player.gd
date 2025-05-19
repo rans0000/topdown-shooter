@@ -85,7 +85,6 @@ func calculate_weapon_sway() -> void:
 	var distanceSquared := position.distance_squared_to(target_position)
 	var distance_factor := remap(distanceSquared, 0, 400, 0, 5)
 	var velocity_factor := velocity.length() / 10
-	var spread_factor := weapon.settings.bullet_spread
-	var sway:float = distance_factor + velocity_factor + spread_factor
+	var sway:float = distance_factor + velocity_factor + weapon.settings.bullet_spread + weapon.recoil
 	player_ui.set_weapon_sway(sway * 3)
 	weapon.weapon_sway_angle = sway

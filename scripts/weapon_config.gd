@@ -6,6 +6,8 @@ class_name WeaponConfig
 @export var muzzle_position: Vector3
 @export var cool_down :float = 0.2
 @export var weapon_sway : float = 0.15
+@export var recoil : float = 1
+@export var recoil_duration : float = 0.3
 @export var is_automatic : bool = false
 
 @export_category("Sounds")
