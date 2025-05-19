@@ -3,17 +3,26 @@
 extends Node3D
 class_name Weapon
 
+var weapon_index := 0
+var fire_mode : int
+var BulletScene : PackedScene = preload("res://scenes/weapons/bullet.tscn")
 @onready var muzzle : Marker3D = $Muzzle
 @onready  var weapon_mesh : MeshInstance3D = %WeaponMesh
-var BulletScene : PackedScene = preload("res://scenes/weapons/bullet.tscn")
+@export_file("*.tres") var weapon_paths: Array[String]
 @export var weapon : WeaponConfig:
 	set(value):
 		weapon = value
 		if Engine.is_editor_hint():
 			load_weapon()
-var weapon_index := 0
-var fire_mode : int
-@export_file("*.tres") var weapon_paths: Array[String]
+var target_pos: Vector3:
+	set(pos):
+		#target_pos = pos * muzzle.global_position.y
+		target_pos = pos
+
+
+
+#func _process(_delta: float) -> void:
+	#DebugDraw3D.draw_line(muzzle.global_position, target_pos, Color(1, 1, 0))
 
 
 func _ready() -> void:
@@ -39,3 +48,4 @@ func fire_weapon() -> void:
 	get_tree().get_first_node_in_group('SpawnGroup').add_child(bullet)
 	bullet.configure(weapon.bullet_speed, weapon.damage, weapon.bullet_life)
 	bullet.global_transform = muzzle.global_transform
+	bullet.look_at(target_pos, Vector3.UP)

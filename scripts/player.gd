@@ -44,8 +44,8 @@ func move_player(delta:float) -> void:
 func look_at_camera() -> void:
 	player_ui.set_reticule_position(cursor_position)
 	var state = get_world_3d().direct_space_state
-	var origin = camera.project_ray_origin(cursor_position)
-	var end = origin + camera.project_ray_normal(cursor_position) * 1000
+	var origin:Vector3 = camera.project_ray_origin(cursor_position)
+	var end :Vector3= origin + camera.project_ray_normal(cursor_position) * 1000
 	var query = PhysicsRayQueryParameters3D.create(origin, end, 0b00000000_00000000_00000000_00000001)
 	var result := state.intersect_ray(query)
 	if result.is_empty(): return
@@ -53,6 +53,7 @@ func look_at_camera() -> void:
 	var pos = result.position;
 	target_position = Vector3(pos.x, position.y, pos.z)
 	look_at(target_position, Vector3.UP)
+	weapon.target_pos = pos + (origin - pos).normalized()
 
 
 func handle_joystick_motion() -> void:

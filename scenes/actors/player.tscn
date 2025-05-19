@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ctja0uvn27c7c" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://cfxhbeqf1tupn" path="res://scenes/weapons/weapon.tscn" id="2_ru62r"]
 [ext_resource type="Resource" uid="uid://blkps5agoh526" path="res://data/hamster_pistol.tres" id="3_ktjr4"]
-[ext_resource type="PackedScene" uid="uid://pb871oa06w88" path="res://scenes/actors/player_ui.tscn" id="4_7wueq"]
+[ext_resource type="PackedScene" uid="uid://pb871oa06w88" path="res://scenes/ui/player_ui.tscn" id="4_7wueq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -48,5 +48,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.696792, 1.47442, -0.0948657
 weapon = ExtResource("3_ktjr4")
 
 [node name="PlayerUI" parent="." instance=ExtResource("4_7wueq")]
-
-[editable path="PlayerUI"]

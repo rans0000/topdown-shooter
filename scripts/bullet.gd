@@ -8,6 +8,7 @@ var damage : float
 
 func _physics_process(delta: float) -> void:
 	position -= transform.basis.z * speed * delta
+	#print(position)
 
 
 func configure(_speed: float, _damage: float, _life: float) -> void:

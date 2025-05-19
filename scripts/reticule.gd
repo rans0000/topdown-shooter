@@ -1,12 +1,11 @@
-@tool
-
 extends Node2D
 
 
 const _length := 10
 const _color := Color.WHITE
 const line_thickness := 2
-@onready var offset := 0.0
+var offset := 0.0
+
 
 
 func _process(_delta: float) -> void:
