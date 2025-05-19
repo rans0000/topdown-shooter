@@ -13,7 +13,7 @@ var BulletScene : PackedScene = preload("res://scenes/weapons/bullet.tscn")
 			load_weapon()
 var weapon_index := 0
 var fire_mode : int
-const weapon_paths := ["res://data/comrade_rifle.tres", "res://data/hamster_pistol.tres"];
+@export_file("*.tres") var weapon_paths: Array[String]
 
 
 func _ready() -> void:

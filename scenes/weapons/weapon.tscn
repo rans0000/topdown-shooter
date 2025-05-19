@@ -4,6 +4,7 @@
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_eo7p8")
+weapon_paths = Array[String](["uid://blkps5agoh526", "uid://hsykr01gij81"])
 
 [node name="WeaponMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
