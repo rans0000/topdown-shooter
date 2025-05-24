@@ -12,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fe2o3")
 new_game_path = "uid://c4tmuahbrvodu"
+pause_menu_path = "uid://bxseaypr18s7"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
