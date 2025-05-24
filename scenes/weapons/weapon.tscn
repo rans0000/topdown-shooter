@@ -19,5 +19,6 @@ mesh = ExtResource("3_4uykt")
 [node name="Timers" type="Node" parent="."]
 
 [node name="CooldownTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
 
 [connection signal="timeout" from="Timers/CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

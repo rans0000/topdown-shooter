@@ -8,7 +8,7 @@ var move_speed := 300.0
 var cursor_position := Vector2.ZERO
 var target_position := Vector3.ZERO
 var joystick_acceleration := 10;
-var move_mode := Constants.MOVE_MODE.WALK
+var stance := Constants.STANCE_MODE.WALK
 var is_crouching := false
 
 
@@ -37,7 +37,7 @@ func move_player(delta:float) -> void:
 	var move_vec2D := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := Vector3(move_vec2D.x, 0, move_vec2D.y)
 	var target_vec2D := Vector2(target_position.x, target_position.z).normalized()
-	var speed := remap(move_vec2D.dot(target_vec2D), -1, 1, 1, 2) * move_speed * move_mode
+	var speed := remap(move_vec2D.dot(target_vec2D), -1, 1, 1, 2) * move_speed * stance
 	velocity = direction  * speed * delta
 
 
@@ -64,18 +64,18 @@ func handle_joystick_motion() -> void:
 
 func handle_sprint() -> void:
 	if Input.is_action_pressed("action_sprint"):
-		move_mode = Constants.MOVE_MODE.SPRINT
+		stance = Constants.STANCE_MODE.SPRINT
 	if Input.is_action_just_released("action_sprint"):
-		move_mode = Constants.MOVE_MODE.WALK
+		stance = Constants.STANCE_MODE.WALK
 
 
 func handle_crouch() -> void:
 	if Input.is_action_just_pressed("action_crouch"):
 		if is_crouching:
-			move_mode = Constants.MOVE_MODE.WALK
+			stance = Constants.STANCE_MODE.WALK
 			scale = Vector3(1, 1, 1)
 		else:
-			move_mode = Constants.MOVE_MODE.CROUCH
+			stance = Constants.STANCE_MODE.CROUCH
 			scale = Vector3(1, 0.5, 1)
 		is_crouching = not is_crouching
 
@@ -84,7 +84,8 @@ func calculate_weapon_sway() -> void:
 #	@todo: calculate sway properly
 	var distanceSquared := position.distance_squared_to(target_position)
 	var distance_factor := remap(distanceSquared, 0, 400, 0, 5)
-	var velocity_factor := velocity.length() / 10
-	var sway:float = distance_factor + velocity_factor + weapon.settings.bullet_spread + weapon.recoil
+	var velocity_factor := velocity.length() / 3
+	var crouch_factor := 1.0 if stance == Constants.STANCE_MODE.CROUCH else 5.0
+	var sway:float = distance_factor + velocity_factor + weapon.settings.bullet_spread + weapon.recoil + crouch_factor
 	player_ui.set_weapon_sway(sway * 3)
 	weapon.weapon_sway_angle = sway

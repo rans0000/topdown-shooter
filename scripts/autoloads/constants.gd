@@ -1,7 +1,7 @@
 extends Node
 
-const MOVE_MODE = {
-	CROUCH = 0.9,
+const STANCE_MODE = {
+	CROUCH = 0.5,
 	WALK = 1.0,
 	SPRINT = 2.0
 }

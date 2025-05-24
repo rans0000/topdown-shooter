@@ -79,7 +79,7 @@ func set_firing(value: bool) -> void:
 		_recoil_tween.tween_property(self, "recoil", 0, settings.recoil_duration).set_ease(Tween.EASE_IN)
 	else:
 		recoil = 0
-		_recoil_tween.stop()
+		if _recoil_tween: _recoil_tween.stop()
 
 
 func _on_cooldown_timer_timeout() -> void:
