@@ -1,47 +1,49 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4tmuahbrvodu"]
+[gd_scene load_steps=10 format=3 uid="uid://dwrs4okxl16pw"]
 
-[ext_resource type="PackedScene" uid="uid://chx0th40f3qwq" path="res://scenes/actors/player.tscn" id="1_55aix"]
-[ext_resource type="Texture2D" uid="uid://u43owmv8pjvk" path="res://assets/textures/texture_01.png" id="2_lvkeh"]
-[ext_resource type="PackedScene" uid="uid://blg2a01ntsib6" path="res://scenes/misc/camera.tscn" id="3_74gp3"]
-[ext_resource type="Script" uid="uid://4ou54ceikufh" path="res://scripts/door.gd" id="3_lvkeh"]
-[ext_resource type="PackedScene" uid="uid://bbdtk2go5w7hj" path="res://scenes/actors/enemy.tscn" id="4_pq5yi"]
+[ext_resource type="PackedScene" uid="uid://chx0th40f3qwq" path="res://scenes/actors/player.tscn" id="1_g86sx"]
+[ext_resource type="Texture2D" uid="uid://u43owmv8pjvk" path="res://assets/textures/texture_01.png" id="2_jni2o"]
+[ext_resource type="Script" uid="uid://4ou54ceikufh" path="res://scripts/door.gd" id="3_he8e3"]
+[ext_resource type="PackedScene" uid="uid://blg2a01ntsib6" path="res://scenes/misc/camera.tscn" id="4_o4kqt"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m0brp"]
 sky_top_color = Color(0.622333, 0.685203, 0.772828, 1)
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+energy_multiplier = 0.0
 
-[sub_resource type="Sky" id="Sky_4wyf3"]
-sky_material = SubResource("ProceduralSkyMaterial_rwgxs")
+[sub_resource type="Sky" id="Sky_g86sx"]
+sky_material = SubResource("ProceduralSkyMaterial_m0brp")
 
-[sub_resource type="Environment" id="Environment_k0juu"]
+[sub_resource type="Environment" id="Environment_jni2o"]
 background_mode = 2
-sky = SubResource("Sky_4wyf3")
+sky = SubResource("Sky_g86sx")
+ambient_light_color = Color(0.0907552, 0.0860358, 0.203485, 1)
+ambient_light_energy = 2.45
 tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wyf3"]
-albedo_texture = ExtResource("2_lvkeh")
+albedo_texture = ExtResource("2_jni2o")
 uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lvkeh"]
 size = Vector3(2, 3, 2)
 
-[node name="World" type="Node3D"]
+[node name="Map2" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_k0juu")
+environment = SubResource("Environment_jni2o")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 9.04882, 9.52569, 0)
-light_color = Color(1, 0.991667, 0.9, 1)
+light_color = Color(1, 0.954145, 0.554254, 1)
 shadow_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="Entities" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("1_55aix")]
+[node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("1_g86sx")]
 camera = NodePath("../../CameraBase/CameraPivot/Camera")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -53,15 +55,15 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.481868, 0)
 use_collision = true
 collision_mask = 0
-size = Vector3(50, 1, 50)
+size = Vector3(10, 1, 10)
 material = SubResource("StandardMaterial3D_4wyf3")
 metadata/_edit_lock_ = true
 
 [node name="Door" type="Area3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1534, 1.5, -22.5156)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.82521, 1.5, -3.73759)
 collision_mask = 2
-script = ExtResource("3_lvkeh")
-scene_path = "uid://dwrs4okxl16pw"
+script = ExtResource("3_he8e3")
+scene_path = "uid://c4tmuahbrvodu"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door"]
 shape = SubResource("BoxShape3D_lvkeh")
@@ -70,15 +72,9 @@ shape = SubResource("BoxShape3D_lvkeh")
 collision_mask = 2
 size = Vector3(2, 3, 2)
 
-[node name="CameraBase" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_74gp3")]
+[node name="CameraBase" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("4_o4kqt")]
 camera_target = NodePath("../Entities/Player/CameraTarget")
 metadata/_edit_lock_ = true
-
-[node name="Spawns" type="Node3D" parent="." groups=["SpawnGroup"]]
-metadata/_edit_lock_ = true
-
-[node name="Enemy" parent="Spawns" instance=ExtResource("4_pq5yi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -11)
 
 [connection signal="body_entered" from="Map/Door" to="Map/Door" method="_on_body_entered"]
 

@@ -36,6 +36,5 @@ func fade() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_pressed():
-		print("saa")
 		Global.game_controller.unload_all_scenes()
 		Global.game_controller.change_gui_scene(main_menu_path)

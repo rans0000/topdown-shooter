@@ -87,5 +87,5 @@ func calculate_weapon_sway() -> void:
 	var velocity_factor := velocity.length() / 3
 	var crouch_factor := 1.0 if stance == Constants.STANCE_MODE.CROUCH else 5.0
 	var sway:float = distance_factor + velocity_factor + weapon.settings.bullet_spread + weapon.recoil + crouch_factor
-	player_ui.set_weapon_sway(sway * 3)
+	player_ui.set_weapon_sway(sway)
 	weapon.weapon_sway_angle = sway
