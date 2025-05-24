@@ -13,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ewm7t")
+main_menu_path = "uid://c3fwrnvjgaqt2"
 splashscreen_container = NodePath("Logos")
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cmgmaecxmtlil"]
+
+[ext_resource type="StyleBox" uid="uid://cyrw41pml8enq" path="res://scenes/ui/themes/panel_container_box_style.tres" id="1_ltwvc"]
+[ext_resource type="StyleBox" uid="uid://cihqlwytwsdl6" path="res://scenes/ui/themes/button_style_box_flat.tres" id="1_xfsig"]
+[ext_resource type="StyleBox" uid="uid://ck242d0dvbvb8" path="res://scenes/ui/themes/label_style_box_empty.tres" id="2_ctlha"]
+
+[resource]
+Button/styles/normal = ExtResource("1_xfsig")
+Button/styles/panel = ExtResource("1_xfsig")
+Label/font_sizes/font_size = 24
+Label/styles/normal = ExtResource("2_ctlha")
+PanelContainer/styles/panel = ExtResource("1_ltwvc")
+VBoxContainer/constants/separation = 10

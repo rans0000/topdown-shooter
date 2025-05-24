@@ -31,9 +31,11 @@ func fade() -> void:
 		tween.tween_property(screen, "modulate:a", 0.0, fadeout_time)
 		tween.tween_interval(out_time)
 		await  tween.finished
-		Global.game_controller.change_3D_scene(main_menu_path)
+	Global.game_controller.change_gui_scene(main_menu_path)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_pressed():
-		Global.game_controller.change_3D_scene(main_menu_path)
+		print("saa")
+		Global.game_controller.unload_all_scenes()
+		Global.game_controller.change_gui_scene(main_menu_path)
