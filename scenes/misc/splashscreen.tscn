@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://cghkvkqx0aelj"]
+
+[ext_resource type="Script" uid="uid://dsf2ugemsqenl" path="res://scripts/splashscreen.gd" id="1_ewm7t"]
+[ext_resource type="Texture2D" uid="uid://dni6oocrinody" path="res://assets/textures/fireashfire_logo.png" id="1_ofki1"]
+[ext_resource type="Texture2D" uid="uid://blguwth0en0g6" path="res://assets/textures/godo_logos.png" id="2_pl7pl"]
+[ext_resource type="Texture2D" uid="uid://bicbdsn012h3j" path="res://assets/textures/blender_logo.png" id="3_ewm7t"]
+
+[node name="Splashscreen" type="Control" node_paths=PackedStringArray("splashscreen_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ewm7t")
+splashscreen_container = NodePath("Logos")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.112423, 0.118971, 0.131551, 1)
+
+[node name="Logos" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FireAshFire" type="TextureRect" parent="Logos"]
+layout_mode = 2
+texture = ExtResource("1_ofki1")
+
+[node name="Builtwith" type="Control" parent="Logos"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Logos/Builtwith"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Logos/Builtwith/CenterContainer"]
+layout_mode = 2
+
+[node name="TextEdit" type="Label" parent="Logos/Builtwith/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Built with"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Logos/Builtwith/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Godot" type="TextureRect" parent="Logos/Builtwith/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_pl7pl")
+
+[node name="Blender" type="TextureRect" parent="Logos/Builtwith/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_ewm7t")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -162.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Container/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.24, 0.24, 1)
+text = "Press any key to Skip  "
+horizontal_alignment = 2
