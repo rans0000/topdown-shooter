@@ -25,6 +25,7 @@ func pause_game(tree: SceneTree) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	tree.paused = true
 	self.show()
+	$Control/PanelContainer/VBoxContainer/ResumeBtn.grab_focus()
 
 
 func _on_resume_btn_pressed() -> void:

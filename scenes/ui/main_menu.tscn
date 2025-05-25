@@ -56,15 +56,22 @@ horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="Control/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../SettingsButton")
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_sl1te")
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="Control/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+mouse_default_cursor_shape = 2
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="Control/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+mouse_default_cursor_shape = 2
 text = "Quit Game"
 
 [connection signal="pressed" from="Control/CenterContainer/PanelContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

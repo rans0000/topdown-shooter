@@ -4,6 +4,10 @@ extends Control
 @export_file("*.tscn") var pause_menu_path: String
 
 
+func _ready() -> void:
+	$Control/CenterContainer/PanelContainer/VBoxContainer/PlayButton.grab_focus()
+
+
 func _on_play_button_pressed() -> void:
 	Global.game_controller.unload_all_scenes()
 	Global.game_controller.change_3D_scene(new_game_path)
