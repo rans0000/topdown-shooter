@@ -8,4 +8,5 @@ script = ExtResource("1_cvpoc")
 [node name="CameraPivot" type="Node3D" parent="."]
 
 [node name="Camera" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.0885637, 0.996071, 0, -0.996071, 0.0885637, 0, 12.9368, 3.31217)
+transform = Transform3D(1, 0, 0, 0, 0.231272, 0.97289, 0, -0.97289, 0.231272, -4.76837e-07, 10.8145, 3.718)
+fov = 45.0
