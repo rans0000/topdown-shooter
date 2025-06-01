@@ -1,9 +1,18 @@
 extends Node
 
 const STANCE_MODE = {
-	CROUCH = 0.5,
-	WALK = 1.0,
-	SPRINT = 2.0
+	CROUCH = {
+		speed_multiplier = 0.5,
+		blend_multiplier = 0.5
+	},
+	WALK = {
+		speed_multiplier = 1.0,
+		blend_multiplier = 1.0
+	},
+	SPRINT = {
+		speed_multiplier = 2.0,
+		blend_multiplier = 2.0
+	}
 }
 
 enum  WEAPON_TYPE {

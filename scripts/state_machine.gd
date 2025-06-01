@@ -2,8 +2,8 @@ extends Node
 class_name StateMachine
 
 @export var parent: Node3D
-@export var current_state: State
 @export var animation_ctrl: ActorAnimationController
+@export var current_state: State
 
 func init() -> void:
 	for child in get_children() as Array[State]:
