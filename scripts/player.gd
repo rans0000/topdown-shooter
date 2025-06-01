@@ -8,7 +8,7 @@ extends CharacterBody3D
 #var move_speed := 300.0
 var cursor_position := Vector2.ZERO
 var target_position := Vector3.ZERO
-var stance := Constants.STANCE_MODE.WALK
+#var stance := Constants.STANCE_MODE.WALK
 var _joystick_acceleration := 10;
 #var is_crouching := false
 
@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	locomotion_fsm.physics_process(delta)
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	locomotion_fsm.unhandled_input(event)
 	
 	if event is InputEventMouseMotion:
