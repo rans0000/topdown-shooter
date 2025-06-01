@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var camera: Camera3D
+@export var locomotion_fsm: StateMachine
 @onready var weapon: Weapon = $Weapon
 @onready var bounds := get_viewport().get_visible_rect().size
 @onready var player_ui: PlayerUI = $PlayerUI
@@ -14,9 +15,12 @@ var is_crouching := false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	locomotion_fsm.init()
 
 
 func _physics_process(delta: float) -> void:
+	locomotion_fsm.physics_process(delta)
+	
 	move_player(delta)
 	handle_joystick_motion()
 	look_at_camera()
@@ -25,6 +29,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	locomotion_fsm.unhandled_input(event)
+	
 	if event is InputEventMouseMotion:
 		cursor_position = get_viewport().get_mouse_position()
 	elif event is InputEventJoypadMotion:

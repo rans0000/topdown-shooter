@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://cl5o7i344800m"
-path="res://.godot/imported/Rifle Aiming Idle.fbx-e41d60c6b13483c4534da1baa05bab58.res"
+uid="uid://btk813rloabi4"
+path="res://.godot/imported/Pistol Idle.fbx-adab517033e277bcb872f5fa86012797.res"
 
 [deps]
 
-source_file="res://assets/animations/humanoid/fbx/Rifle Aiming Idle.fbx"
-dest_files=["res://.godot/imported/Rifle Aiming Idle.fbx-e41d60c6b13483c4534da1baa05bab58.res"]
+source_file="res://assets/animations/humanoid/fbx/Pistol Idle.fbx"
+dest_files=["res://.godot/imported/Pistol Idle.fbx-adab517033e277bcb872f5fa86012797.res"]
 
 [params]
 
@@ -37,7 +37,7 @@ _subresources={
 "mixamo_com": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "res://assets/animations/humanoid/rifle_aiming_idle.res",
+"save_to_file/path": "uid://drqi7j7y38j54",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
