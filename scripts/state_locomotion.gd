@@ -1,4 +1,14 @@
-extends StateLocomotion
+extends State
+class_name StateLocomotion
+
+@export var move_speed := 5.0
+@export var idle_state: State
+@export var movement_state: State
+
+const _RAY_LENGTH := 1000.0
+var speed_blend := Vector2.ZERO
+var stance := Constants.STANCE_MODE.WALK
+var is_crouching := false
 
 func enter() -> void:
 	super()
@@ -11,10 +21,7 @@ func process(_delta: float) -> State:
 
 
 func  physics_process(_delta: float) -> State:
-	var new_state = move_player()
-	if new_state:
-		return new_state
-	return null
+	return movement_state if _is_moving() else idle_state
 
 
 func unhandled_input(_event: InputEvent) -> State:
@@ -26,22 +33,9 @@ func _look_at_reticle() -> void:
 	parent.look_at(parent.target_position, Vector3.UP)
 
 
-func move_player() -> State:
+func _is_moving() -> bool:
 	var move_vec2D := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	if move_vec2D == Vector2.ZERO:
-		return idle_state
-	
-	var direction := Vector3(move_vec2D.x, 0, move_vec2D.y)
-	var target_vec2D := Vector2(parent.target_position.x, parent.target_position.z).normalized()
-	var speed : float = remap(move_vec2D.dot(target_vec2D), -1, 1, 1, 2) * stance.speed_multiplier * move_speed
-	parent.velocity = direction * speed
-	parent.move_and_slide()
-	
-	var forward_factor : float = parent.global_transform.basis.z.dot(direction)
-	var strafe_factor : float= parent.global_transform.basis.x.dot(direction)
-	speed_blend = lerp(speed_blend, Vector2(strafe_factor, forward_factor) * stance.blend_multiplier, 0.1)
-	fsm.animation_ctrl.move_actor(speed_blend)
-	return null
+	return not move_vec2D == Vector2.ZERO
 
 
 func _handle_sprint() -> void:

@@ -34,13 +34,13 @@ func _physics_process(delta: float) -> void:
 	locomotion_fsm.physics_process(delta)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	locomotion_fsm.unhandled_input(event)
-	
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		cursor_position = get_viewport().get_mouse_position()
 	#handle_sprint()
 	#handle_crouch()
+	
+	locomotion_fsm.unhandled_input(event)
 
 
 #func move_player(delta:float) -> void:
