@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqtlyoaxnnedf"]
+
+[ext_resource type="Script" uid="uid://deivdy6v8olk4" path="res://scripts/weapon_pickup.gd" id="1_uaahk"]
+[ext_resource type="Script" uid="uid://dcqpsnfve3rdl" path="res://scripts/weapon_config.gd" id="2_wcj62"]
+[ext_resource type="PackedScene" uid="uid://cqfte8o5vxjeh" path="res://scenes/misc/interactable.tscn" id="2_xjcrh"]
+[ext_resource type="Resource" uid="uid://hsykr01gij81" path="res://data/comrade_rifle.tres" id="3_6bk1c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j4xte"]
+radius = 0.2
+
+[node name="WeaponPickup" type="Node3D"]
+script = ExtResource("1_uaahk")
+guns = Array[ExtResource("2_wcj62")]([ExtResource("3_6bk1c")])
+
+[node name="Interactable" parent="." instance=ExtResource("2_xjcrh")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("SphereShape3D_j4xte")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+size = Vector3(0.4, 0.4, 0.4)
