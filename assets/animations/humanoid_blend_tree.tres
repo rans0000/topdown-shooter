@@ -1,0 +1,170 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=32 format=3 uid="uid://b6fhmfnuo1cma"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_txlgw"]
+animation = &"humanoid_lib/throw_granade"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4o374"]
+animation = &"humanoid_lib/get_hit_stomach"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fa7r6"]
+animation = &"humanoid_lib/pick_item"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_wdiqr"]
+filter_enabled = true
+filters = ["Skeleton3D:mixamorig_Head", "Skeleton3D:mixamorig_LeftArm", "Skeleton3D:mixamorig_LeftForeArm", "Skeleton3D:mixamorig_LeftHand", "Skeleton3D:mixamorig_LeftHandIndex1", "Skeleton3D:mixamorig_LeftHandIndex2", "Skeleton3D:mixamorig_LeftHandIndex3", "Skeleton3D:mixamorig_LeftHandThumb1", "Skeleton3D:mixamorig_LeftHandThumb2", "Skeleton3D:mixamorig_LeftHandThumb3", "Skeleton3D:mixamorig_LeftShoulder", "Skeleton3D:mixamorig_Neck", "Skeleton3D:mixamorig_RightArm", "Skeleton3D:mixamorig_RightForeArm", "Skeleton3D:mixamorig_RightHand", "Skeleton3D:mixamorig_RightHandIndex1", "Skeleton3D:mixamorig_RightHandIndex2", "Skeleton3D:mixamorig_RightHandIndex3", "Skeleton3D:mixamorig_RightHandThumb1", "Skeleton3D:mixamorig_RightHandThumb2", "Skeleton3D:mixamorig_RightHandThumb3", "Skeleton3D:mixamorig_RightShoulder", "Skeleton3D:mixamorig_Spine", "Skeleton3D:mixamorig_Spine1", "Skeleton3D:mixamorig_Spine2"]
+fadein_time = 0.2
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_uav47"]
+xfade_time = 0.2
+input_0/name = "pickup_item"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "throw_grenade"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "get_hit"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uyjk"]
+animation = &"humanoid_lib/crouch_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22871"]
+animation = &"humanoid_lib/crouch_walk_forwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3fi0c"]
+animation = &"humanoid_lib/crouch_strafe_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpmb8"]
+animation = &"humanoid_lib/crouch_strafe_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wxa5b"]
+animation = &"humanoid_lib/crouch_walk_backwards"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_8lk5g"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_1uyjk")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_22871")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_3fi0c")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_lpmb8")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_wxa5b")
+blend_point_4/pos = Vector2(0, -1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwotj"]
+animation = &"humanoid_lib/equip_weapon"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnsoi"]
+animation = &"humanoid_lib/fire_rifle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kqqum"]
+animation = &"humanoid_lib/reload_rifle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_geegb"]
+animation = &"humanoid_lib/rifle_aiming_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_43gh7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jx3ug"]
+xfade_time = 0.2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lcpwo"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wl4x6"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ah6ee"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pb0l0"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xf5ai"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jv1ax"]
+states/End/position = Vector2(1027, 93)
+states/Start/position = Vector2(138, 100)
+states/humanoid_lib_equip_weapon/node = SubResource("AnimationNodeAnimation_qwotj")
+states/humanoid_lib_equip_weapon/position = Vector2(414, -29)
+states/humanoid_lib_fire_rifle/node = SubResource("AnimationNodeAnimation_lnsoi")
+states/humanoid_lib_fire_rifle/position = Vector2(392, 221)
+states/humanoid_lib_reload_rifle/node = SubResource("AnimationNodeAnimation_kqqum")
+states/humanoid_lib_reload_rifle/position = Vector2(685, 214)
+states/humanoid_lib_rifle_aiming_idle/node = SubResource("AnimationNodeAnimation_geegb")
+states/humanoid_lib_rifle_aiming_idle/position = Vector2(422, 93)
+transitions = ["Start", "humanoid_lib_rifle_aiming_idle", SubResource("AnimationNodeStateMachineTransition_43gh7"), "Start", "humanoid_lib_equip_weapon", SubResource("AnimationNodeStateMachineTransition_jx3ug"), "humanoid_lib_equip_weapon", "humanoid_lib_rifle_aiming_idle", SubResource("AnimationNodeStateMachineTransition_lcpwo"), "humanoid_lib_rifle_aiming_idle", "humanoid_lib_fire_rifle", SubResource("AnimationNodeStateMachineTransition_wl4x6"), "humanoid_lib_fire_rifle", "humanoid_lib_rifle_aiming_idle", SubResource("AnimationNodeStateMachineTransition_ah6ee"), "humanoid_lib_rifle_aiming_idle", "humanoid_lib_reload_rifle", SubResource("AnimationNodeStateMachineTransition_pb0l0"), "humanoid_lib_reload_rifle", "humanoid_lib_rifle_aiming_idle", SubResource("AnimationNodeStateMachineTransition_xf5ai")]
+graph_offset = Vector2(32, -94)
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_b2hlv"]
+filter_enabled = true
+filters = ["Skeleton3D:mixamorig_Head", "Skeleton3D:mixamorig_LeftArm", "Skeleton3D:mixamorig_LeftForeArm", "Skeleton3D:mixamorig_LeftHand", "Skeleton3D:mixamorig_LeftHandIndex1", "Skeleton3D:mixamorig_LeftHandIndex2", "Skeleton3D:mixamorig_LeftHandIndex3", "Skeleton3D:mixamorig_LeftHandThumb1", "Skeleton3D:mixamorig_LeftHandThumb2", "Skeleton3D:mixamorig_LeftHandThumb3", "Skeleton3D:mixamorig_LeftShoulder", "Skeleton3D:mixamorig_Neck", "Skeleton3D:mixamorig_RightArm", "Skeleton3D:mixamorig_RightForeArm", "Skeleton3D:mixamorig_RightHand", "Skeleton3D:mixamorig_RightHandIndex1", "Skeleton3D:mixamorig_RightHandIndex2", "Skeleton3D:mixamorig_RightHandIndex3", "Skeleton3D:mixamorig_RightHandThumb1", "Skeleton3D:mixamorig_RightHandThumb2", "Skeleton3D:mixamorig_RightHandThumb3", "Skeleton3D:mixamorig_RightShoulder", "Skeleton3D:mixamorig_Spine", "Skeleton3D:mixamorig_Spine1", "Skeleton3D:mixamorig_Spine2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8lk5g"]
+animation = &"humanoid_lib/running"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c7qyl"]
+animation = &"humanoid_lib/strafe_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6xwxl"]
+animation = &"humanoid_lib/strafe_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5cmrk"]
+animation = &"humanoid_lib/running_backwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2twqg"]
+animation = &"humanoid_lib/idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2twqg"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8lk5g")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_c7qyl")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_6xwxl")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_5cmrk")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_2twqg")
+blend_point_4/pos = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_jr2ou"]
+
+[resource]
+graph_offset = Vector2(2919.07, -365.564)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_fa7r6")
+nodes/Animation/position = Vector2(2920, -40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_txlgw")
+"nodes/Animation 2/position" = Vector2(2880, 140)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_4o374")
+"nodes/Animation 3/position" = Vector2(2880, 300)
+nodes/action_oneshot/node = SubResource("AnimationNodeOneShot_wdiqr")
+nodes/action_oneshot/position = Vector2(3460, -460)
+nodes/action_transition/node = SubResource("AnimationNodeTransition_uav47")
+nodes/action_transition/position = Vector2(3240, -180)
+nodes/crouch_blend/node = SubResource("AnimationNodeBlendSpace2D_8lk5g")
+nodes/crouch_blend/position = Vector2(2260, -260)
+nodes/output/position = Vector2(4180, -420)
+nodes/rifle_fsm/node = SubResource("AnimationNodeStateMachine_jv1ax")
+nodes/rifle_fsm/position = Vector2(2800, -280)
+nodes/shooting_blend/node = SubResource("AnimationNodeBlend2_b2hlv")
+nodes/shooting_blend/position = Vector2(3060, -440)
+nodes/stand_blend/node = SubResource("AnimationNodeBlendSpace2D_2twqg")
+nodes/stand_blend/position = Vector2(2260, -500)
+nodes/stand_crouch_blend/node = SubResource("AnimationNodeBlend2_jr2ou")
+nodes/stand_crouch_blend/position = Vector2(2520, -460)
+node_connections = [&"action_oneshot", 0, &"shooting_blend", &"action_oneshot", 1, &"action_transition", &"action_transition", 0, &"Animation", &"action_transition", 1, &"Animation 2", &"action_transition", 2, &"Animation 3", &"output", 0, &"action_oneshot", &"shooting_blend", 0, &"stand_crouch_blend", &"shooting_blend", 1, &"rifle_fsm", &"stand_crouch_blend", 0, &"stand_blend", &"stand_crouch_blend", 1, &"crouch_blend"]

@@ -80,7 +80,12 @@ bones/38/rotation = Quaternion(0.674251, 0.0715386, 0.100352, 0.728146)
 bones/39/rotation = Quaternion(0.243138, 0.0361209, 0.0124141, 0.96924)
 
 [node name="AnimationTree" parent="Entities/Player" index="5"]
+parameters/aim_transition/current_state = ""
+parameters/aim_transition/current_index = -1
 parameters/locomotion/blend_position = 0
+parameters/locomotion_blend/blend_amount = 0
+parameters/stance_transition/current_state = ""
+parameters/stance_transition/current_index = -1
 
 [node name="Map" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
