@@ -3,6 +3,17 @@ class_name ActorAnimationController
 
 @export var anim_tree: AnimationTree
 
-func move_actor(move_2D: Vector2) -> void:
-	#var loco:AnimationNodeBlendSpace2D = anim_tree.get("parameters/locomotion")
-	anim_tree.set("parameters/locomotion/blend_position", move_2D)
+func set_crouching(is_crouching := true) -> void:
+	var tween = create_tween()
+	if is_crouching:
+		tween.tween_property(anim_tree, "parameters/stand_crouch_blend/blend_amount", 1.0, 0.2)
+	else:
+		tween.tween_property(anim_tree, "parameters/stand_crouch_blend/blend_amount", 0.0, 0.2)
+
+
+func move_actor(move_2D: Vector2, is_crouching: bool) -> void:
+	#print("...", is_crouching, move_2D)
+	if is_crouching:
+		anim_tree.set("parameters/crouch_blend/blend_position", move_2D)
+	else:
+		anim_tree.set("parameters/stand_blend/blend_position", move_2D)

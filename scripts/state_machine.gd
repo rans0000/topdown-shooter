@@ -1,7 +1,7 @@
 extends Node
 class_name StateMachine
 
-@export var parent: Node3D
+@export var parent: CharacterBody3D
 @export var animation_ctrl: ActorAnimationController
 @export var current_state: State
 
