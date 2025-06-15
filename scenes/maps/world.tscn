@@ -19,6 +19,8 @@ sky_material = SubResource("ProceduralSkyMaterial_rwgxs")
 background_mode = 2
 sky = SubResource("Sky_4wyf3")
 tonemap_mode = 2
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wyf3"]
@@ -38,47 +40,6 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 light_color = Color(1, 0.991667, 0.9, 1)
 shadow_enabled = true
 metadata/_edit_lock_ = true
-
-[node name="Entities" type="Node3D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("1_55aix")]
-camera = NodePath("../../CameraBase/CameraPivot/Camera")
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="Skeleton3D" parent="Entities/Player/Model/Armature" index="0"]
-bones/0/position = Vector3(0.00325826, 0.931307, -0.00576019)
-bones/0/rotation = Quaternion(-0.0399685, -0.365293, -0.0146498, 0.929919)
-bones/1/rotation = Quaternion(-0.0129466, 0.040209, -0.00528364, 0.999093)
-bones/2/rotation = Quaternion(0.0955947, 0.0816663, -0.00718199, 0.992039)
-bones/3/rotation = Quaternion(0.152507, 0.0810735, -0.0118839, 0.9849)
-bones/4/rotation = Quaternion(-0.0123086, -0.0108248, 0.00164226, 0.999864)
-bones/5/rotation = Quaternion(-0.0374025, 0.176218, -0.00508492, 0.983627)
-bones/7/rotation = Quaternion(-0.479714, -0.534662, 0.567078, -0.40303)
-bones/8/rotation = Quaternion(0.533372, -0.0544403, 0.134103, 0.833407)
-bones/9/rotation = Quaternion(-0.00752592, 0.0632784, 0.414744, 0.907704)
-bones/10/rotation = Quaternion(-0.123932, 0.136945, 0.0124818, 0.982716)
-bones/11/rotation = Quaternion(0.304729, -0.00554214, 0.147301, 0.940963)
-bones/12/rotation = Quaternion(-0.00685448, 0.000679329, 0.00054876, 0.999976)
-bones/15/rotation = Quaternion(0.0414844, -0.00588659, 0.0616876, 0.997216)
-bones/16/rotation = Quaternion(0.154509, -0.0009803, -0.00555689, 0.987975)
-bones/19/rotation = Quaternion(0.529005, -0.49734, 0.535544, 0.431277)
-bones/20/rotation = Quaternion(0.507068, 0.0313297, 0.0975577, 0.855794)
-bones/21/rotation = Quaternion(0.0593836, 0.00635913, -0.363752, 0.929579)
-bones/22/rotation = Quaternion(0.102691, -0.0513087, -0.0922962, 0.989092)
-bones/23/rotation = Quaternion(0.230772, 0.1416, -0.195447, 0.9426)
-bones/24/rotation = Quaternion(-0.0437301, 0.00173999, 0.185717, 0.981628)
-bones/27/rotation = Quaternion(0.0374146, 0.00961628, 0.0101866, 0.999202)
-bones/28/rotation = Quaternion(0.146272, 0.000216124, 0.0099285, 0.989195)
-bones/31/rotation = Quaternion(0.0790456, 0.211247, 0.9686, -0.104595)
-bones/32/rotation = Quaternion(-0.31024, 0.120817, -0.0406575, 0.942073)
-bones/33/rotation = Quaternion(0.578862, -0.0217477, -0.0288053, 0.814626)
-bones/34/rotation = Quaternion(0.247628, -0.0177475, -0.0402507, 0.967856)
-bones/36/rotation = Quaternion(-0.125237, 0.0118585, 0.983481, 0.130151)
-bones/37/rotation = Quaternion(-0.295955, 0.077167, -0.0176419, 0.951916)
-bones/38/rotation = Quaternion(0.67775, 0.0710854, 0.0995253, 0.725049)
-bones/39/rotation = Quaternion(0.243009, 0.0359372, 0.0125148, 0.969277)
 
 [node name="Map" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
@@ -104,18 +65,60 @@ shape = SubResource("BoxShape3D_lvkeh")
 collision_mask = 2
 size = Vector3(2, 3, 2)
 
+[node name="Spawns" type="Node3D" parent="Map" groups=["SpawnGroup"]]
+metadata/_edit_lock_ = true
+
+[node name="Enemy" parent="Map/Spawns" instance=ExtResource("4_pq5yi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -11)
+
+[node name="WeaponPickup" parent="Map" instance=ExtResource("6_74gp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90603, 0, -4.96413)
+weapons = Array[String](["uid://hsykr01gij81", "uid://blkps5agoh526"])
+
+[node name="Entities" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="Entities" node_paths=PackedStringArray("camera") instance=ExtResource("1_55aix")]
+camera = NodePath("../../CameraBase/CameraPivot/Camera")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Skeleton3D" parent="Entities/Player/Model/Armature" index="0"]
+bones/0/position = Vector3(0.00229229, 0.928681, -0.0102158)
+bones/0/rotation = Quaternion(-0.036683, -0.367172, -0.0133493, 0.929334)
+bones/1/rotation = Quaternion(-0.0103961, 0.0406965, -0.00599954, 0.999099)
+bones/2/rotation = Quaternion(0.100727, 0.0826681, -0.00847107, 0.991438)
+bones/3/rotation = Quaternion(0.157633, 0.0820496, -0.0132395, 0.983994)
+bones/4/rotation = Quaternion(-0.0342577, -0.0110824, 0.00210299, 0.999349)
+bones/5/rotation = Quaternion(-0.0550977, 0.176798, -0.0128071, 0.98262)
+bones/7/rotation = Quaternion(-0.498036, -0.517381, 0.57103, -0.397747)
+bones/8/rotation = Quaternion(0.523223, -0.0632084, 0.133986, 0.83922)
+bones/9/rotation = Quaternion(-0.0125336, 0.0578851, 0.405338, 0.912246)
+bones/10/rotation = Quaternion(-0.160338, 0.139943, 0.0151319, 0.976974)
+bones/11/rotation = Quaternion(0.306728, -0.00749925, 0.155821, 0.938926)
+bones/12/rotation = Quaternion(-0.00733768, 0.000599595, 0.00119343, 0.999972)
+bones/15/rotation = Quaternion(0.0326218, -0.0057436, 0.0610729, 0.997584)
+bones/16/rotation = Quaternion(0.142947, -0.000773502, -0.00694375, 0.989706)
+bones/19/rotation = Quaternion(0.550182, -0.477286, 0.537976, 0.424359)
+bones/20/rotation = Quaternion(0.489609, 0.0491962, 0.0988824, 0.864919)
+bones/21/rotation = Quaternion(0.0449272, 0.0284364, -0.359709, 0.931548)
+bones/22/rotation = Quaternion(0.1073, -0.0646151, -0.102326, 0.986834)
+bones/23/rotation = Quaternion(0.230946, 0.143082, -0.200417, 0.941289)
+bones/24/rotation = Quaternion(-0.041043, 0.00165979, 0.178302, 0.983118)
+bones/27/rotation = Quaternion(0.0397607, 0.00984452, 0.0101268, 0.99911)
+bones/28/rotation = Quaternion(0.147657, 0.000259477, 0.00976737, 0.98899)
+bones/31/rotation = Quaternion(0.0784776, 0.218522, 0.966746, -0.1072)
+bones/32/rotation = Quaternion(-0.314194, 0.119248, -0.0407332, 0.940958)
+bones/33/rotation = Quaternion(0.578905, -0.0231222, -0.0311373, 0.814472)
+bones/34/rotation = Quaternion(0.247884, -0.0182693, -0.04019, 0.967783)
+bones/36/rotation = Quaternion(-0.124594, 0.0246808, 0.983551, 0.128428)
+bones/37/rotation = Quaternion(-0.310111, 0.0750703, -0.0185393, 0.94755)
+bones/38/rotation = Quaternion(0.682857, 0.0702589, 0.0978145, 0.720557)
+bones/39/rotation = Quaternion(0.242859, 0.0357657, 0.0126748, 0.969319)
+
 [node name="CameraBase" parent="." node_paths=PackedStringArray("camera_target") instance=ExtResource("3_74gp3")]
 camera_target = NodePath("../Entities/Player/CameraTarget")
 metadata/_edit_lock_ = true
-
-[node name="Spawns" type="Node3D" parent="." groups=["SpawnGroup"]]
-metadata/_edit_lock_ = true
-
-[node name="Enemy" parent="Spawns" instance=ExtResource("4_pq5yi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -11)
-
-[node name="WeaponPickup" parent="." instance=ExtResource("6_74gp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90603, 0, -4.96413)
 
 [connection signal="body_entered" from="Map/Door" to="Map/Door" method="_on_body_entered"]
 

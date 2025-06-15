@@ -12,7 +12,6 @@ func set_crouching(is_crouching := true) -> void:
 
 
 func move_actor(move_2D: Vector2, is_crouching: bool) -> void:
-	#print("...", is_crouching, move_2D)
 	if is_crouching:
 		anim_tree.set("parameters/crouch_blend/blend_position", move_2D)
 	else:

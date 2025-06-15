@@ -54,6 +54,11 @@ func _handle_joystick_motion() -> void:
 	cursor_position = Vector2(clampf(cursor_position.x + joy_vector.x, 0, _bounds.x),clampf(cursor_position.y + joy_vector.y, 0, _bounds.y) )
 
 
+func pickup_weapon(new_weapon:WeaponConfig) -> bool:
+	print("actor picking weapon: ", new_weapon.name)
+	return true
+
+
 #func calculate_weapon_sway() -> void:
 ##	@todo: calculate sway properly
 	#var distanceSquared := position.distance_squared_to(target_position)
